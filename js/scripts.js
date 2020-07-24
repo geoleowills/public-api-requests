@@ -24,6 +24,7 @@ fetchPeople('https://randomuser.me/api/?nat=gb&results=12')
     .then(personArray => allData = personArray)
     .then(personArray => createCards(personArray))
     .then(createSearch())
+    .catch(err => console.log(err))
 
 // Takes in an array of people objects, loops through and creates a HTML template for each of the people cards,
 // appends each HTML card template to the page and adds and adds an event listener to each card, calling
@@ -73,9 +74,9 @@ function createModalWindow(person, id) {
                     <p class="modal-text">${person.email}</p>
                     <p class="modal-text cap">${person.location.city}</p>
                     <hr>
-                    <p class="modal-text">${person.cell}</p>
+                    <p class="modal-text">(${person.cell.slice(0, 3)}) ${person.cell.slice(3, 4)}${person.cell.slice(5, 7)}-${person.cell.slice(9, 12)}</p>
                     <p class="modal-text">${person.location.street.number} ${person.location.street.name}, ${person.location.state}, ${person.location.postcode}</p>
-                    <p class="modal-text">Birthday: ${(person.dob.date).slice(8,10)}/${(person.dob.date).slice(5,7)}/${(person.dob.date).slice(0,4)}</p>
+                    <p class="modal-text">Birthday: ${(person.dob.date).slice(5,7)}/${(person.dob.date).slice(8,10)}/${(person.dob.date).slice(0,4)}</p>
                 </div>
             </div>
             <div class="modal-btn-container">
